@@ -14,7 +14,8 @@ Gentoo overlay for [SonarPractice](https://github.com/sonar-project/SonarPractic
 Add the overlay to Portage (as root):
 
 ```bash
-eselect repository repository add sonarp https://github.com/knasan/sonarp-overlay
+eselect repository add sonarp git https://github.com/knasan/sonarp-overlay
+emaint sync -r sonarp
 ```
 
 Optional USE flags (`/etc/portage/package.use`):
@@ -29,6 +30,9 @@ dev-qt/qttools:6 linguist
 ## Install
 
 ```bash
+echo "=media-sound/sonarpractice-0.1.0::sonarp ~amd64" >> /etc/portage/package.accept_keywords/sonarpractice
+echo "=media-libs/libgp_parser-0.2.1::sonarp ~amd64" >> /etc/portage/package.accept_keywords/libgp_parser
+echo "media-sound/sonarpractice ffmpeg webengine" >> /etc/portage/package.use/sonarpractice
 emerge -av media-sound/sonarpractice
 ```
 
