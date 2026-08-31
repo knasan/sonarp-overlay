@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>knasan@users.noreply.github.com</email>
+		<name>Sandy Marko Knauer</name>
+	</maintainer>
+	<upstream>
+		<remote-id type="github">sonar-project/SonarPractice</remote-id>
+	</upstream>
+	<use>
+		<flag name="ffmpeg">Enable media stream probing via media-video/ffmpeg</flag>
+		<flag name="webengine">Enable AlphaTab Guitar Pro player via Qt WebEngine</flag>
+	</use>
+	<longdescription lang="en">
+		Personal practice hub that groups Guitar Pro files, audio, and learning material.
+	</longdescription>
+</pkgmetadata>

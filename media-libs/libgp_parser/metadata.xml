@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>knasan@users.noreply.github.com</email>
+		<name>Sandy Marko Knauer</name>
+	</maintainer>
+	<upstream>
+		<remote-id type="github">sonar-project/libgp_parser</remote-id>
+	</upstream>
+	<longdescription lang="en">
+		Standalone C++23 library for parsing Guitar Pro files (GP3–GP7 / GPX).
+	</longdescription>
+</pkgmetadata>
