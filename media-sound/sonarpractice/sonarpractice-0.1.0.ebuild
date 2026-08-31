@@ -10,17 +10,16 @@ HOMEPAGE="https://github.com/sonar-project/SonarPractice"
 SRC_URI="
 	https://github.com/sonar-project/SonarPractice/archive/refs/tags/v${PV}.tar.gz
 		-> ${P}.tar.gz
-	https://github.com/breakfastquay/rubberband/archive/refs/tags/v4.0.0.tar.gz
-		-> rubberband-4.0.0.tar.gz
 "
 
-LICENSE="AGPL-3 MPL-2.0 Apache-2.0 OFL-1.1 GPL-2"
+LICENSE="AGPL-3 MPL-2.0 Apache-2.0 OFL-1.1"
 SLOT="0"
 KEYWORDS="~amd64"
 IUSE="ffmpeg webengine"
 
 DEPEND="
 	>=media-libs/libgp_parser-0.2.1:=
+	>=media-libs/rubberband-4.0.0:=
 	>=dev-qt/qtbase-6.11:6[concurrent,gui,sql,sqlite,widgets]
 	>=dev-qt/qtdeclarative-6.11:6[widgets]
 	>=dev-qt/qtmultimedia-6.11:6
@@ -35,18 +34,11 @@ BDEPEND="
 	>=dev-qt/qttools-6.11:6[linguist]
 "
 
-src_unpack() {
-	default
-	mv "${WORKDIR}/rubberband-4.0.0" "${WORKDIR}/rubberband" || die
-}
-
 src_prepare() {
 	sed -i "s/^project(SonarPractice VERSION .*/project(SonarPractice VERSION ${PV})/" \
 		CMakeLists.txt || die
-	sed -i 's/add_library(SonarPractice_Rubberband SHARED/add_library(SonarPractice_Rubberband STATIC/' \
-		cmake/FindRubberband.cmake || die
 
-	# v0.1.0 and earlier always FetchContent libgp_parser; prefer the system package.
+	# v0.1.0 still FetchContents libgp_parser + rubberband; force system packages.
 	cat > cmake/Dependencies.cmake <<'EOF' || die
 # cmake/Dependencies.cmake
 # External dependencies for SonarPractice.
@@ -69,7 +61,6 @@ find_package(Qt6 6.8 REQUIRED COMPONENTS
     Widgets
 )
 
-# Optional: AlphaTab player via Qt WebEngine (ASCII preview remains the fallback).
 set(SONARPRACTICE_HAS_WEBENGINE OFF)
 find_package(Qt6 QUIET COMPONENTS WebEngineQuick)
 if(TARGET Qt6::WebEngineQuick)
@@ -82,10 +73,15 @@ endif()
 include(FindRubberband)
 include(FindFFmpeg)
 
-include(FetchContent)
-
 find_package(libgp_parser 0.2 REQUIRED)
 message(STATUS "Using system libgp_parser")
+EOF
+
+	cat > cmake/FindRubberband.cmake <<'EOF' || die
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(RUBBERBAND REQUIRED IMPORTED_TARGET GLOBAL rubberband)
+add_library(SonarPractice::Rubberband ALIAS PkgConfig::RUBBERBAND)
+message(STATUS "Using system Rubber Band ${RUBBERBAND_VERSION}")
 EOF
 
 	cmake_src_prepare
@@ -94,7 +90,6 @@ EOF
 src_configure() {
 	local mycmakeargs=(
 		-DFETCHCONTENT_FULLY_DISCONNECTED=ON
-		-DFETCHCONTENT_SOURCE_DIR_RUBBERBAND="${WORKDIR}/rubberband"
 	)
 	cmake_src_configure
 }

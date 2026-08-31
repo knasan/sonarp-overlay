@@ -54,6 +54,6 @@ For local git checkouts, edit `EGIT_REPO_URI` in the `9999` ebuilds to
 ## Notes
 
 - App depends on Portage Qt `>=6.11:6` (not the Qt Maintenance Tool under `~/Qt`).
-- `sonarpractice-0.1.0` rewrites `cmake/Dependencies.cmake` at prepare time so the
-  tagged release uses system `libgp_parser` instead of FetchContent.
-- RubberBand is still bundled via FetchContent in the app ebuild.
+- Runtime/build deps from Gentoo: `media-libs/libgp_parser`, `media-libs/rubberband` (≥4.0).
+- `sonarpractice-0.1.0` rewrites `cmake/Dependencies.cmake` and `FindRubberband.cmake` at
+  prepare time so the tagged release uses those system packages instead of FetchContent.
