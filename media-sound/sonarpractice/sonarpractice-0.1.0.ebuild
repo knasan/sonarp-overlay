@@ -3,15 +3,12 @@
 
 EAPI=8
 
-inherit cmake desktop xdg
+inherit cmake desktop git-r3 xdg
 
 DESCRIPTION="Practice hub for Guitar Pro, audio, and learning material"
 HOMEPAGE="https://github.com/sonar-project/SonarPractice"
-SRC_URI="
-	https://github.com/sonar-project/SonarPractice/archive/refs/tags/v${PV}.tar.gz
-		-> ${P}.tar.gz
-"
-
+EGIT_REPO_URI="https://github.com/sonar-project/SonarPractice.git"
+EGIT_COMMIT="v${PV}"
 LICENSE="AGPL-3 MPL-2.0 Apache-2.0 OFL-1.1"
 SLOT="0"
 KEYWORDS="~amd64"
