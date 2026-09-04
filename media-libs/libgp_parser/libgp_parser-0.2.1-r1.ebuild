@@ -3,15 +3,15 @@
 
 EAPI=8
 
-inherit cmake git-r3
+inherit cmake
 
 DESCRIPTION="C++23 Guitar Pro file parser (GP3–GP7)"
 HOMEPAGE="https://github.com/sonar-project/libgp_parser"
-EGIT_REPO_URI="https://github.com/sonar-project/libgp_parser.git"
-# Local live builds: EGIT_REPO_URI="file:///home/smk/Develop/Projects/libgp_parser"
+SRC_URI="https://github.com/sonar-project/libgp_parser/archive/refs/tags/v${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="AGPL-3"
 SLOT="0/0.2"
+KEYWORDS="~amd64"
 IUSE="examples test"
 RESTRICT="!test? ( test )"
 

@@ -8,6 +8,9 @@
 	<upstream>
 		<remote-id type="github">sonar-project/libgp_parser</remote-id>
 	</upstream>
+	<use>
+		<flag name="examples">Build and install CLI examples (gp_info, gp_score)</flag>
+	</use>
 	<longdescription lang="en">
 		Standalone C++23 library for parsing Guitar Pro files (GP3–GP7 / GPX).
 	</longdescription>
