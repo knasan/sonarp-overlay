@@ -9,6 +9,8 @@ DESCRIPTION="C++23 Guitar Pro file parser (GP3–GP7)"
 HOMEPAGE="https://github.com/sonar-project/libgp_parser"
 # ${P} omits -rN and would collide with the old v0.2.1 distfile on mirrors.
 SRC_URI="https://github.com/sonar-project/libgp_parser/archive/refs/tags/v${PVR}.tar.gz -> ${PF}.tar.gz"
+# GitHub tag archives unpack to ${PN}-${PVR}/, not ${P}/.
+S="${WORKDIR}/${PF}"
 
 LICENSE="AGPL-3"
 SLOT="0/0.2"
