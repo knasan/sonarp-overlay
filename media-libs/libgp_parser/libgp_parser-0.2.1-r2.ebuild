@@ -7,7 +7,7 @@ inherit cmake
 
 DESCRIPTION="C++23 Guitar Pro file parser (GP3–GP7)"
 HOMEPAGE="https://github.com/sonar-project/libgp_parser"
-SRC_URI="https://github.com/sonar-project/libgp_parser/archive/refs/tags/v${PV}.tar.gz -> ${P}.tar.gz"
+SRC_URI="https://github.com/sonar-project/libgp_parser/archive/refs/tags/v${PV}-${PR}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="AGPL-3"
 SLOT="0/0.2"
